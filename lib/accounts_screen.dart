@@ -15,45 +15,95 @@ class _AccountsScreenState extends State<AccountsScreen> {
   String _rol = 'vendedor';
 
   void _crearCuenta() async {
+    if (_emailController.text.trim().isEmpty ||
+        _passwordController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Debe completar todos los campos"),
+        ),
+      );
+      return;
+    }
+
     try {
-      // Creamos el usuario en Auth
-      UserCredential res = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      // Crear usuario en Firebase Auth
+      UserCredential res =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      // Guardamos el rol en Firestore
-      await FirebaseFirestore.instance.collection('usuarios').doc(res.user!.uid).set({
+
+      // Guardar rol en Firestore
+      await FirebaseFirestore.instance
+          .collection('usuarios')
+          .doc(res.user!.uid)
+          .set({
         'email': _emailController.text.trim(),
         'rol': _rol,
       });
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Cuenta creada con éxito")));
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Cuenta creada con éxito"),
+        ),
+      );
+
       Navigator.pop(context);
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error: $e")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Error: $e"),
+        ),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Crear Cuentas")),
+      appBar: AppBar(
+        title: const Text("Crear Cuentas"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(25),
         child: Column(
           children: [
-            TextField(controller: _emailController, decoration: const InputDecoration(labelText: "Correo")),
-            TextField(controller: _passwordController, decoration: const InputDecoration(labelText: "Contraseña")),
+            TextField(
+              controller: _emailController,
+              decoration: const InputDecoration(
+                labelText: "Correo",
+              ),
+            ),
+
+            TextField(
+              controller: _passwordController,
+              decoration: const InputDecoration(
+                labelText: "Contraseña",
+              ),
+            ),
+
             DropdownButton<String>(
               value: _rol,
               isExpanded: true,
               items: const [
-                DropdownMenuItem(value: 'vendedor', child: Text("Vendedor / Mesero")),
-                DropdownMenuItem(value: 'admin', child: Text("Administrador")),
+                DropdownMenuItem(
+                  value: 'vendedor',
+                  child: Text("Vendedor / Mesero"),
+                ),
+                DropdownMenuItem(
+                  value: 'admin',
+                  child: Text("Administrador"),
+                ),
               ],
               onChanged: (v) => setState(() => _rol = v!),
             ),
+
             const SizedBox(height: 30),
-            ElevatedButton(onPressed: _crearCuenta, child: const Text("REGISTRAR USUARIO")),
+
+            ElevatedButton(
+              onPressed: _crearCuenta,
+              child: const Text("REGISTRAR USUARIO"),
+            ),
           ],
         ),
       ),
