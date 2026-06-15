@@ -1,0 +1,49 @@
+name: legendarioapp
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.10.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core: ^2.27.0
+  firebase_auth: ^4.17.8
+  cloud_firestore: ^4.15.8
+  google_fonts: ^6.1.0
+  pdf: ^3.10.8
+  printing: ^5.13.1
+  path_provider: ^2.1.2
+  share_plus: ^7.2.1
+  intl: ^0.18.1
+  provider: ^6.1.1
+  cupertino_icons: ^1.0.8
+  fl_chart: ^0.66.0
+  
+
+dependency_overrides:
+  web: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.13.1
+
+# --- AQUÍ ESTÁ EL CAMBIO ---
+flutter:
+  uses-material-design: true
+  
+  # AGREGA ESTAS DOS LÍNEAS (Respeta los espacios a la izquierda):
+  assets:
+    - assets/icon/logo.png
+    - assets/icon/imagen.png #esta es la que vamos a usar
+
+# Esto déjalo como está
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/logo.png"
+  min_sdk_android: 21

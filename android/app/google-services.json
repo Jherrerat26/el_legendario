@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "720771998477",
+    "project_id": "el-legendario",
+    "storage_bucket": "el-legendario.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720771998477:android:668b4562bffb942b1dc644",
+        "android_client_info": {
+          "package_name": "com.example.legendarioapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5BHkUoAz02pGCJ7fdTVuG0gf6zJfbKVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
