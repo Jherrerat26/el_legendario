@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 // IMPORTACIONES DE TUS PANTALLAS
 import 'login_screen.dart';
-import 'sales_screen.dart';      // Ventas
+import 'sales_screen.dart';      // 
 import 'products_screen.dart';   // Productos (Menú)
 import 'inventory_screen.dart';  // Inventario (Insumos/Ingredientes)
 import 'expenses_screen.dart';   // Gastos
